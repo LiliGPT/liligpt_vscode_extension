@@ -1,0 +1,13 @@
+Show models
+Show database schema
+Kafka help
+Kafka: consume queue
+Kafka: setup provider
+Kafka: setup
+Swagger: setup
+Swagger: generate documentation
+Swagger: help
+HTTP: Create REST API client
+Docker: help
+Docker: setup
+Kafka help

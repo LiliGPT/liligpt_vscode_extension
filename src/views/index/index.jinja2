@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material-UI Example</title>
+  <!-- React -->
+  <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+  <!-- ReactDOM -->
+  <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+  <!-- Material-UI -->
+  <script src="https://unpkg.com/@mui/material@5.11.16/umd/material-ui.production.min.js"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Babel -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  {% for _js in js %}
+    <script type="text/babel">{{ _js|safe }}</script>
+  {% endfor %}
+
+  {% for _css in css %}
+    <style>{{ _css|safe }}</style>
+  {% endfor %}
+
+  <script type="text/babel">
+    ReactDOM.render(
+      <App messagesList={ {{ messagesList | dump | safe }} }/>,
+      document.getElementById('root')
+    );
+  </script>
+</head>
+<body>
+  
+  <div id="app"></div>
+  <!-- Root element for React -->
+  <div id="root"></div>
+</body>
+</html>
