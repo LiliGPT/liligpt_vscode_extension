@@ -25,7 +25,7 @@
     "watch": "tsc -watch -p ./ --jsx react-jsx",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
+    "test": "node ./out/src/test/runTest.js",
     "giovanne": "rm -rf frontend/dist out && cd frontend && yarn build && cd .. && yarn compile"
   },
   "devDependencies": {
@@ -43,6 +43,10 @@
   "dependencies": {
     "@types/jest": "^29.5.0",
     "@types/nunjucks": "^3.2.2",
-    "nunjucks": "^3.2.3"
+    "dotenv": "^16.0.3",
+    "i18next": "^22.4.15",
+    "i18next-fs-backend": "^2.1.1",
+    "nunjucks": "^3.2.3",
+    "socket.io-client": "^4.6.1"
   }
 }

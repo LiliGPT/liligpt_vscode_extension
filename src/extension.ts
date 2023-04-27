@@ -1,5 +1,7 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { initI18Next } from './i18next';
+import { showErrorMessage, showInformationMessage } from './vscode/alerts';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -34,6 +36,11 @@ class ReactPanel {
     } else {
       ReactPanel.currentPanel = new ReactPanel(extensionPath, column || vscode.ViewColumn.Beside);
     }
+
+    initI18Next().then(async (t) => {
+      console.log('i18next initialized');
+      vscode.window.showInformationMessage(t('extension.activated'));
+    });
   }
 
   private constructor(extensionPath: string, column: vscode.ViewColumn) {
@@ -65,6 +72,18 @@ class ReactPanel {
         case 'alert':
           vscode.window.showErrorMessage(message.text);
           this._panel.webview.postMessage({ command: 'refactor', from: 'server' });
+          return;
+        case 'login':
+          showInformationMessage('Fazendo login...');
+          console.log('[vscode extension.ts] login');
+          const prom = vscode.env.openExternal(vscode.Uri.parse('https://liligpt-frontend.giovannefeitosa.com/'));
+          try {
+            prom.then(() => {
+              showInformationMessage('Login realizado com sucesso!');
+            });
+          } catch (error) {
+            showErrorMessage('Não foi possível realizar o login!');
+          }
           return;
       }
     }, null, this._disposables);

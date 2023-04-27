@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "success": "You have successfully logged in.",
+    "fail": "Could not log in. Please try again."
+  },
+  "websockets": {
+    "connectError": "Could not connect to the server. {{error}}"
+  },
+  "extension": {
+    "activated": "Welcome to LiliGPT!"
+  }
+}

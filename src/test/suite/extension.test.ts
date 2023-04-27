@@ -13,4 +13,8 @@ describe("Extension Tests", () => {
   it("Sample test", () => {
     expect(-1).toEqual(-1);
   });
+
+  it("Sample test invalid", () => {
+    expect(-1).toEqual(-2);
+  });
 });

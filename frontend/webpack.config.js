@@ -61,7 +61,7 @@ module.exports = (_, argv) => ({
       name: "mf1",
       filename: "remoteEntry.js",
       remotes: {
-        'nestgptfront': 'mf2@http://localhost:3007/remoteEntry.js',
+        'nestgptfront': 'mf2@https://liligpt-frontend.giovannefeitosa.com/remoteEntry.js',
       },
       exposes: {},
       shared: {
