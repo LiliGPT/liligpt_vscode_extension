@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import { initI18Next } from './i18next';
 import { showErrorMessage, showInformationMessage } from './vscode/alerts';
 import { authenticate } from './authenticator/authenticate';
-import { setVscodeContext } from './vscode/context';
+import { setVscodeContext, setWebview } from './vscode/context';
 
 export function activate(context: vscode.ExtensionContext) {
   setVscodeContext(context);
@@ -63,6 +63,8 @@ class ReactPanel {
 
     // Set the webview's initial html content 
     this._panel.webview.html = this._getHtmlForWebview();
+
+    setWebview(this._panel.webview);
 
     // Listen for when the panel is disposed
     // This happens when the user closes the panel or when the panel is closed programatically

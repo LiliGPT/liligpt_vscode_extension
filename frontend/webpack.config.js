@@ -4,6 +4,13 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
+const remotes = {
+  // dev vscode frontend
+  // 'nestgptfront': 'mf2@https://liligpt-frontend.giovannefeitosa.com/remoteEntry.js',
+  // local vscode frontend
+  'nestgptfront': 'mf2@http://localhost:3005/remoteEntry.js',
+};
+
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
@@ -60,9 +67,7 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "mf1",
       filename: "remoteEntry.js",
-      remotes: {
-        'nestgptfront': 'mf2@https://liligpt-frontend.giovannefeitosa.com/remoteEntry.js',
-      },
+      remotes,
       exposes: {},
       shared: {
         // ...deps,
