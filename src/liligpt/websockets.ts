@@ -7,7 +7,10 @@ import { t } from 'i18next';
 export async function connectToWebsocketsServer(
   context: ExtensionContext,
 ): Promise<Socket> {
-  const socket = io(WS_URL);
+  const socket = io(WS_URL, {
+    transports: ['websocket'],
+    timeout: 5000,
+  });
 
   // wait for connection
   return new Promise((resolve, reject) => {

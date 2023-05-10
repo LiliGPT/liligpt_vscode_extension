@@ -2,9 +2,11 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { initI18Next } from './i18next';
 import { showErrorMessage, showInformationMessage } from './vscode/alerts';
+import { authenticate } from './authenticator/authenticate';
+import { setVscodeContext } from './vscode/context';
 
 export function activate(context: vscode.ExtensionContext) {
-
+  setVscodeContext(context);
   context.subscriptions.push(vscode.commands.registerCommand('nestgpt.open', () => {
     ReactPanel.createOrShow(context.extensionPath);
   }));
@@ -75,15 +77,16 @@ class ReactPanel {
           return;
         case 'login':
           showInformationMessage('Fazendo login...');
-          console.log('[vscode extension.ts] login');
-          const prom = vscode.env.openExternal(vscode.Uri.parse('https://liligpt-frontend.giovannefeitosa.com/'));
-          try {
-            prom.then(() => {
-              showInformationMessage('Login realizado com sucesso!');
-            });
-          } catch (error) {
-            showErrorMessage('Não foi possível realizar o login!');
-          }
+          authenticate();
+          // console.log('[vscode extension.ts] login');
+          // const prom = vscode.env.openExternal(vscode.Uri.parse('https://liligpt-frontend.giovannefeitosa.com/'));
+          // try {
+          //   prom.then(() => {
+          //     showInformationMessage('Login realizado com sucesso!');
+          //   });
+          // } catch (error) {
+          //   showErrorMessage('Não foi possível realizar o login!');
+          // }
           return;
       }
     }, null, this._disposables);

@@ -6,15 +6,15 @@ import { openExternalUrl } from '../vscode/externalUrl';
 import { LOGIN_URL } from '../constants';
 import { showInformationMessage } from '../vscode/alerts';
 import { t } from 'i18next';
+import { getVscodeContext } from '../vscode/context';
 
 interface AuthenticationData {
   accessToken: string;
   refreshToken: string;
 }
 
-export async function authenticate(
-  context: ExtensionContext,
-) {
+export async function authenticate() {
+  const context: ExtensionContext = getVscodeContext();
   const socket = await connectToWebsocketsServer(context);
   if (!socket) {
     // no need for error handling here
@@ -27,8 +27,8 @@ export async function authenticate(
 
   // wait for authentication data
   socket.on('vscode:auth', async (data: AuthenticationData) => {
-    await setSecret(context, 'liligpt:accessToken', data.accessToken);
     showInformationMessage(t('auth.success'));
+    await setSecret(context, 'liligpt:accessToken', data.accessToken);
   });
 
   // open login page

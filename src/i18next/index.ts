@@ -2,14 +2,14 @@ import i18next, { TFunction } from 'i18next';
 import path from 'path';
 import enJson from './en.json';
 
-const _instance: {
-  t: TFunction | null;
-} = {
-  t: null,
-};
+let _initialized: boolean = false;
 
 export function initI18Next() {
   return new Promise<TFunction>((resolve, reject) => {
+    if (_initialized) {
+      resolve(i18next.t);
+      return;
+    }
     i18next.init({
       debug: true,
       lng: 'en',
@@ -28,7 +28,7 @@ export function initI18Next() {
       if (err) {
         reject(err);
       } else {
-        _instance.t = t;
+        _initialized = true;
         resolve(t);
       }
     }
