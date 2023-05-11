@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import { FileUtils } from './utils/FileUtils';
+import * as FileUtils from './utils/files';
 
 const messagesTxtFile = FileUtils.abspath('data/messages.txt', "data/messages.txt was not found!");
 const viewsDir = FileUtils.abspath('src/views', "src/views directory was not found!");

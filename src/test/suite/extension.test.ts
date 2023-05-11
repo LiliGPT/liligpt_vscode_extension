@@ -5,16 +5,16 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 // import * as myExtension from '../../extension';
 
-describe("Extension Tests", () => {
+describe("[extension] Extension Tests", () => {
   beforeAll(() => {
     vscode.window.showInformationMessage('Start all tests.');
   });
 
-  it("Sample test", () => {
+  it("[extension] Sample test", () => {
     expect(-1).toEqual(-1);
   });
 
-  it("Sample test invalid", () => {
+  it("[extension] Sample test invalid", () => {
     expect(-1).toEqual(-2);
   });
 });

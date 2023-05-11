@@ -4,7 +4,7 @@ import { WS_URL } from '../constants';
 import { showErrorMessage } from '../vscode/alerts';
 import { t } from 'i18next';
 
-export async function connectToWebsocketsServer(
+export async function websocketsConnect(
   context: ExtensionContext,
 ): Promise<Socket> {
   const socket = io(WS_URL, {

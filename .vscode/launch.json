@@ -7,7 +7,7 @@
       "request": "launch",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--disable-extensions"
+        // "--disable-extensions"
       ],
       "preLaunchTask": "${defaultBuildTask}",
       "outputCapture": "console",
