@@ -12,12 +12,12 @@ export class ProjectPath {
     this.baseDir = baseDir || projectDir;
   }
 
-  public static absolute(uri: string): string {
+  public static absolute(uri: string, baseDir?: string): string {
     const path = new ProjectPath();
-    return path.absolute(uri);
+    return path.absolute(uri, baseDir);
   }
 
-  public absolute(uri: string): string {
-    return `${this.baseDir}/${uri}`;
+  public absolute(uri: string, baseDir?: string): string {
+    return `${baseDir || this.baseDir}/${uri}`;
   }
 }
